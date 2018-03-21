@@ -1,0 +1,13 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+  <br>
+  {% for skill_type, values in skill_dict.items %}
+    <b>{{ skill_type }}</b>
+    <br>
+    {% for technology, expertise in values %}
+      {{ technology }} ({{ expertise }})
+      <br>
+    {% endfor %}
+  {% endfor %}
+{% endblock %}
