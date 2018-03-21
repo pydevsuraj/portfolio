@@ -1,5 +1,88 @@
 {% extends 'portfolio/base.html' %}
 
+{% block title %}
+  Suraj Awal - Know about me
+{% endblock %}
+
+{% block css_file %}
+  <style type="text/css">
+    body{
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    #myHeader{
+      height: 100vh;
+      background-image: url('../../../media/images/header-background.jpg');
+      background-size: cover;
+    }
+    #darkDiv{
+      background-color: rgba(0, 0, 0, 0.5);
+      height: 100vh;
+    }
+    #navbar{
+      float: right;
+      margin-right: 40px;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    #navbar span a{
+      color: white;
+      margin-right: 40px;
+    }
+    #navbar span a:hover{
+      text-decoration: none;
+    }
+    #general_bio{
+      clear: both;
+      transform: translate(0px, 20vh);
+    }
+    #name{
+      color: white;
+      font-size: 40px;
+      text-align: center;
+    }
+    .border{
+      height: 10px;
+      border-bottom: 5px solid;
+      border-bottom-color: white;
+      width: 10%;
+      margin: 0px auto;
+    }
+    #bio{
+      text-align: center;
+      color: white;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+    #profile-image{
+      width: 10%;
+      margin-left: 45%;
+    }
+  </style>
+{% endblock %}
+
+{% block header %}
+  <div class="row" id="myHeader">
+    <div id="darkDiv">
+      <div class="row" id="navbar">
+        <span><a href="{% url 'portfolio_homepage' %}">Home</a></span>
+        <span><a href="#">Blog</a></span>
+      </div>
+      <div class="row" id="general_bio">
+        <div class="col-12">
+          {% for personal_info in personal_infos %}
+            <div class="row"><img class="img-circle" id="profile-image" src="../../../media/{{ personal_info.image }}"></div>
+            <div class="row" id="name">{{ personal_info.name }}</div>
+            <div class="row">
+              <div class="border"></div>
+            </div>
+            <div class="row" id="bio">{{ personal_info.short_description }}</div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
 {% block content %}
   <br>
   {% for skill_type, values in skill_dict.items %}

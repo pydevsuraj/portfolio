@@ -1,6 +1,10 @@
 from django.db import models
 
 # Create your models here.
+
+def upload_to(instance, filename):
+  return 'images/' + filename
+
 class PersonalInfo(models.Model):
   name = models.CharField(max_length=50)
   email = models.EmailField()
@@ -10,6 +14,7 @@ class PersonalInfo(models.Model):
   description = models.TextField()
   quotation = models.CharField(max_length=100)
   short_description = models.CharField(max_length=100)
+  image = models.ImageField(upload_to=upload_to, max_length=300, blank=True, null=True)
 
 
 class EducationalInfo(models.Model):
